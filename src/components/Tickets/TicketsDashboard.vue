@@ -1,18 +1,18 @@
 <template>
   <q-page class="center">
-      <tickets-table :data="myTickets" title="Mes Tickets"></tickets-table>
-      <tickets-table :data="teamTickets" title="Tickets dans mon équipe"></tickets-table>
+      <rrr-tickets-table :data="myTickets" title="Mes Tickets"></rrr-tickets-table>
+      <rrr-tickets-table :data="teamTickets" title="Tickets dans mon équipe"></rrr-tickets-table>
   </q-page>
 </template>
 
 <script>
-import TicketsTable from 'components/Tickets/TicketsTable.vue'
+import TicketsTable from 'components/tickets/TicketsTable.vue'
 import TicketData from 'src/data/tickets.js'
 
 export default {
   name: 'TicketsDashboard',
   components: {
-    'tickets-table': TicketsTable
+    'rrr-tickets-table': TicketsTable
   },
   computed: {
     myTickets: function () {

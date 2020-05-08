@@ -1,8 +1,8 @@
 import MainLayout from 'layouts/MainLayout.vue'
 import IndexPage from 'pages/Index.vue'
 import ErrorPage from 'pages/Error404.vue'
-import TicketsDashboard from 'components/Tickets/TicketsDashboard.vue'
-import TicketDetail from 'components/Tickets/TicketDetail.vue'
+import TicketsDashboard from 'components/tickets/TicketsDashboard.vue'
+import TicketDetail from 'components/tickets/TicketDetail.vue'
 
 const routes = [
   {
