@@ -1,16 +1,40 @@
 <template>
-  <q-tab-panels 
-    v-model="activeTab" 
-    animated 
-    vertical
-    class="bg-green-5"
-  >
-    <q-tab-panel name="none" class="bg-green-5 q-pa-xs" />
-    <q-tab-panel name="cards" class="bg-green-5 q-pt-xl">
-      <div class="row">
-        <p class="card-title q-pa-md">Défis actifs</p>
-          <!-- affiche les cartes défi actives -->
-          <q-img v-for="card in activeChallenges" :src="card.imageSource" class="q-mx-xs card">
+  <div>
+    <q-tab-panels 
+      v-model="activeTab" 
+      animated 
+      vertical
+      class="bg-green-5"
+    >
+      <q-tab-panel name="none" class="bg-green-5 q-pa-xs" />
+      <q-tab-panel name="cards" class="bg-green-5 q-pt-xl">
+        <div class="row">
+          <p class="card-title q-pa-md">Défis actifs</p>
+            <!-- affiche les cartes défi actives -->
+            <q-img
+              v-for="card in activeChallenges"
+              :src="card.imageSource" 
+              class="q-mx-xs card"
+              @click="openCardDetail(card)"
+            >
+              <q-tooltip
+                content-class="shadow-4"
+                content-style="font-size: 12px"
+                transition-show="scale"
+                transition-hide="scale"
+              >
+                {{ card.description }}
+              </q-tooltip>
+            </q-img>
+        
+          <p class="card-title q-pa-md">Bonus actifs</p>
+          <!-- affiche les cartes bonus actives -->
+          <q-img
+            v-for="card in activeBonus"
+            :src="card.imageSource"
+            class="q-mx-xs card"
+            @click="openCardDetail(card)"
+          >
             <q-tooltip
               content-class="shadow-4"
               content-style="font-size: 12px"
@@ -20,29 +44,26 @@
               {{ card.description }}
             </q-tooltip>
           </q-img>
-      
-        <p class="card-title q-pa-md">Bonus actifs</p>
-        <!-- affiche les cartes bonus actives -->
-        <q-img v-for="card in activeBonus" :src="card.imageSource" class="q-mx-xs card">
-          <q-tooltip
-            content-class="shadow-4"
-            content-style="font-size: 12px"
-            transition-show="scale"
-            transition-hide="scale"
-          >
-            {{ card.description }}
-          </q-tooltip>
-        </q-img>
-      </div>
-    </q-tab-panel>
-  </q-tab-panels>
+        </div>
+      </q-tab-panel>
+    </q-tab-panels>
+
+  <rrr-card-dialog  />
+  </div>
 </template>
 
 <script>
 import Cards from 'src/data/cards.js'
+import CardDetailDialog from 'components/cards/CardDetailDialog'
+import  cardEvents from '../../scripts/cards/cardEvents.js'
 
 export default {
   name: 'ActiveBonus',
+
+  components: {
+    'rrr-card-dialog': CardDetailDialog
+  },
+
   props: {
     showBonus: Boolean 
   },
@@ -56,6 +77,13 @@ export default {
   computed: {
     activeTab: function () {
       return this.showBonus ? 'cards' : 'none'
+    }
+  },
+
+  methods: {
+    openCardDetail: function (card) {
+      // prévient le gestionnaire d'évènement d'ouvrir la popup "détail carte" pour la carte fournie en paramètre
+      cardEvents.eventManager.$emit(cardEvents.openDialogEventName, card)
     }
   }
 }
