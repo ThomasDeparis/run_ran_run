@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md" style="max-width: 700px">
+  <div style="max-width: 700px">
     <q-toolbar class="bg-blue-5 text-white shadow-2">
       <q-toolbar-title class="text-h6">Infos utiles</q-toolbar-title>
       <q-btn flat side icon="playlist_add" label="Ajouter" />

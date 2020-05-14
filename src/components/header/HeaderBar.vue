@@ -11,14 +11,21 @@
             v-model="menuTab" 
             inline-label
             class="bg-green-5 text-white">
-            <q-route-tab :to="{ name: 'ticketsDashboard' }"
+            <q-route-tab
+              :to="{ name: 'ticketsDashboard' }"
               name="tickets" 
               icon="note" 
               label="Tickets"
               class="q-mx-md"
-               />            
+            />            
             <q-tab name="bonus" icon="stars" label="Défis et bonus" class="q-mx-md" />
-            <q-tab name="myProfile" icon="account_box" label="Mon profil" class="q-mx-md" />
+            <q-route-tab
+              :to="{ name: 'profile' }" 
+              name="myProfile"
+              icon="account_box"
+              label="Mon profil"
+              class="q-mx-md"
+            />
           </q-tabs>
 
           <!-- Panel pour afficher les défis et cartes bonus activées -->

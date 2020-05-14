@@ -3,6 +3,7 @@ import IndexPage from 'pages/Index.vue'
 import ErrorPage from 'pages/Error404.vue'
 import TicketsDashboard from 'components/tickets/TicketsDashboard.vue'
 import TicketDetail from 'components/tickets/TicketDetail.vue'
+import UserProfile from 'components/profile/UserProfile.vue'
 
 const routes = [
   {
@@ -19,6 +20,13 @@ const routes = [
       { path: '', redirect: { name: 'ticketsDashboard' } },
       { path: 'dashboard', component: TicketsDashboard, name: 'ticketsDashboard' },
       { path: ':id', component: TicketDetail, name: 'ticketDetail' }
+    ]
+  },
+  {
+    path: '/profile',
+    component: MainLayout,
+    children: [
+      { path: '', component: UserProfile, name: 'profile' }
     ]
   }
 ]

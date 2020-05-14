@@ -5,6 +5,14 @@
       <!-- <q-btn flat side icon="playlist_add" label="Ajouter" /> -->
     </q-toolbar>
 
+    <!-- bouton ajouter pièce jointe -->
+    <q-btn 
+      class="text-center"
+      outline size="12px"
+      icon="note_add"
+      color="blue-5"
+      label="Ajouter" />
+
     <q-card style="text-align:center;">
       <img src="https://cdn.quasar.dev/img/mountains.jpg">
 

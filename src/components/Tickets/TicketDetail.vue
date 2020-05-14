@@ -9,7 +9,7 @@
         </div> 
         <!-- div de la partie droite (toutes les infos du ticket) -->
         <div class="col-10">
-          <div class="q-mx-md q-mb-xl bg-grey-2 text-center">
+          <div class="q-mx-md q-mb-xl bg-grey-2 text-center shadow-5">
             <!-- Utiliser des floating action buttons pour les variantes des boutons action ? (question équipe/client) -->
             <q-btn class="q-ma-md shadow-3"  color="light-green-5" label="Résoudre ticket" />
             <q-btn class="q-ma-md shadow-3" color="green-5" label="Poser une question au client" />
@@ -23,7 +23,7 @@
               :label="ticketStatusBadge.label"
             />
           </div>
-          <div class="q-ma-md bg-grey-2">
+          <div class="q-ma-md bg-grey-2 shadow-2">
             <p class="text-h6">Numéro {{ ticket.id }}</p>
             <p class="text-h5">
               {{ ticket.name }} 
@@ -34,7 +34,7 @@
             <p>Créé le {{ ticket.creationDate }}</p>
             <p>Demandeur : {{ ticket.customer }}</p>
           </div>
-          <div class="q-ma-md bg-grey-2">
+          <div class="q-ma-md bg-grey-2 shadow-2">
             <q-input
               v-model="ticketDescription"
               autogrow
@@ -44,7 +44,7 @@
               input-class="text-justify q-pa-xl"
             />
           </div>
-          <rrr-tips-list :tipsList="ticket.usefulTips" />
+          <rrr-tips-list class="q-ma-md shadow-2" :tipsList="ticket.usefulTips" />
         </div>
       </div>
     </template>
