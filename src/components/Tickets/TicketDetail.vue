@@ -9,13 +9,7 @@
         </div> 
         <!-- div de la partie droite (toutes les infos du ticket) -->
         <div class="col-10">
-          <div class="q-mx-md q-mb-xl bg-grey-2 text-center shadow-5">
-            <!-- Utiliser des floating action buttons pour les variantes des boutons action ? (question équipe/client) -->
-            <q-btn class="q-ma-md shadow-3"  color="light-green-5" label="Résoudre ticket" />
-            <q-btn class="q-ma-md shadow-3" color="green-5" label="Poser une question au client" />
-            <q-btn class="q-ma-md shadow-3" color="green-5" label="Poser une question à un équipier" />
-            <q-btn class="q-ma-md shadow-3" color="green-5" label="Mettre en attente" />
-          </div>
+          <rrr-action-buttons :ticket="ticket" />
           <div class="q-ma-md">
             <q-badge outline
               class="text-subtitle2"
@@ -61,6 +55,7 @@
 import TicketData from 'src/data/tickets.js'
 import TipsList from 'components/tickets/TicketTipsList'
 import FilesList from 'components/tickets/TicketFilesList'
+import TicketActionButtons from 'components/tickets/TicketActionButtons'
 
 export default {
   name: 'ticketDetail',
@@ -72,7 +67,8 @@ export default {
   },
   components: {
     'rrr-tips-list': TipsList,
-    'rrr-attached-files-list': FilesList
+    'rrr-attached-files-list': FilesList,
+    'rrr-action-buttons': TicketActionButtons
   },
   watch: {
     '$route.params.id': function (to, from) {
