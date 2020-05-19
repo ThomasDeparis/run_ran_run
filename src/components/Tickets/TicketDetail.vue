@@ -11,11 +11,23 @@
         <div class="col-10">
           <rrr-action-buttons :ticket="ticket" />
           <div class="q-ma-md">
-            <q-badge outline
-              class="text-subtitle2"
+            <q-badge
+              outline
+              class="text-subtitle2 q-mr-xs"
               :color="ticketStatusBadge.color"
               :label="ticketStatusBadge.label"
             />
+            <!-- pour le paragraphe : applique les classes q-badge et q-badge--outline pour obtenir le meme rendu que le q-badge du statut du ticket 
+            n'utilise pas de balise q-badge pour la solution car s'adapte mal si le texte est très long -->
+            <p
+              v-if="ticket.status == 'Résolu'"              
+              class="q-mt-xs q-mb-none
+                     text-subtitle2 text-justify text-green
+                     q-badge q-badge--outline 
+                     inline flex"
+            >
+              Solution : {{ ticket.solution }}
+            </p>
           </div>
           <div class="q-ma-md bg-grey-2 shadow-2">
             <p class="text-h6">Numéro {{ ticket.id }}</p>
@@ -98,21 +110,25 @@ export default {
     },
     ticketStatusBadge: function () {
       var label, color
-      switch(this.ticket.state.toLowerCase()) {        
+      switch(this.ticket.status.toLowerCase()) {        
         case 'en cours':
           label = 'En cours par ' + this.ticket.inCharge
           color = 'green'
           break
         case 'en attente':
-          label = this.ticket.state
+          label = this.ticket.status
           color = 'orange'
           break
         case 'non pris en charge':
-          label = this.ticket.state
+          label = this.ticket.status
           color = 'red'
           break
+        case 'résolu':
+          label = 'Résolu'
+          color = 'green'
+          break
         default:
-          label = this.ticket.state
+          label = this.ticket.status
           color = 'black'
           break        
       }

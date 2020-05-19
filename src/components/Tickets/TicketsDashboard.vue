@@ -16,10 +16,10 @@ export default {
   },
   computed: {
     myTickets: function () {
-      return TicketData.allTickets.filter(t => t.inCharge === 'Utilisateur')
+      return TicketData.allTickets.filter(t => t.inCharge === 'Utilisateur' && t.status != 'Résolu')
     },
     teamTickets: function () {
-      return TicketData.allTickets.filter(t => t.inCharge !== 'Utilisateur')
+      return TicketData.allTickets.filter(t => t.inCharge !== 'Utilisateur' && t.status != 'Résolu')
     }
   }
 }

@@ -13,6 +13,7 @@
             <!-- affiche les cartes défi actives -->
             <q-img
               v-for="card in activeChallenges"
+              :key="card.imageSource"
               :src="card.imageSource" 
               class="q-mx-xs card"
               @click="openCardDetail(card)"
@@ -31,6 +32,7 @@
           <!-- affiche les cartes bonus actives -->
           <q-img
             v-for="card in activeBonus"
+            :key="card.imageSource"
             :src="card.imageSource"
             class="q-mx-xs card"
             @click="openCardDetail(card)"

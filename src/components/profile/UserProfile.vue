@@ -59,7 +59,7 @@
             size="80px"
             color="light-green"
           >
-          5h33
+          2h42
           </q-circular-progress>
         </div>
         <div class="circular-stat">
