@@ -33,3 +33,6 @@ yarn-error.log*
 *.njsproj
 *.sln
 .editorconfig
+
+# Quasar PDF viewer extension
+/src/statics/pdfjs

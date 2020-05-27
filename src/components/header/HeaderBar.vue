@@ -5,10 +5,9 @@
         <div class="q-pt-xs">
           <q-btn class="col" flat round color="white" :icon="showBonusIcon" @click="showBonus = !showBonus" />
         </div>
-        <div class="col-11">
+        <div class="col">
           <!-- Les onglets du menu -->       
           <q-tabs
-            v-model="menuTab" 
             inline-label
             class="bg-green-5 text-white">
             <q-route-tab
@@ -33,8 +32,8 @@
         </div>
       
         <!-- Avatar et expérience à droite du menu -->
-        <div class="col">
-          <rrr-avatar imageSource="statics\icons\icon-192x192.png" />
+        <div class="col-shrink">
+          <rrr-avatar :userProfile="userProfileInfo" />
         </div>
       </div>
     </div>
@@ -45,6 +44,7 @@
 <script>
 import ActiveBonus from 'components/header/ActiveBonus'
 import Avatar from 'components/header/Avatar'
+import ProfileInfo from '../../data/profile.js'
 
 export default {
   name: 'HeaderBar',
@@ -55,8 +55,8 @@ export default {
 
   data () {
     return {
-      menuTab: 'tickets',
-      showBonus: false
+      showBonus: false,
+      userProfileInfo: ProfileInfo.userProfile
     }
   },
   computed: {

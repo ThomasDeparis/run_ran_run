@@ -1,9 +1,9 @@
 import MainLayout from 'layouts/MainLayout.vue'
 import IndexPage from 'pages/Index.vue'
 import ErrorPage from 'pages/Error404.vue'
-import TicketsDashboard from 'components/tickets/TicketsDashboard.vue'
-import TicketDetail from 'components/tickets/TicketDetail.vue'
-import UserProfile from 'components/profile/UserProfile.vue'
+import TicketsDashboardPage from 'pages/tickets/TicketsDashboard.vue'
+import TicketDetailPage from 'pages/tickets/TicketDetail.vue'
+import UserProfilePage from 'pages/profile/UserProfile.vue'
 
 const routes = [
   {
@@ -18,15 +18,15 @@ const routes = [
     component: MainLayout,
     children: [
       { path: '', redirect: { name: 'ticketsDashboard' } },
-      { path: 'dashboard', component: TicketsDashboard, name: 'ticketsDashboard' },
-      { path: ':id', component: TicketDetail, name: 'ticketDetail' }
+      { path: 'dashboard', component: TicketsDashboardPage, name: 'ticketsDashboard' },
+      { path: ':id', component: TicketDetailPage, name: 'ticketDetail' }
     ]
   },
   {
     path: '/profile',
     component: MainLayout,
     children: [
-      { path: '', component: UserProfile, name: 'profile' }
+      { path: '', component: UserProfilePage, name: 'profile' }
     ]
   }
 ]

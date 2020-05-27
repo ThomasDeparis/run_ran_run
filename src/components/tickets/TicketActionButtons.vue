@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import ResolveTicketDialog from 'components/Tickets/ResolveTicketDialog'
+import ResolveTicketDialog from 'components/tickets/ResolveTicketDialog'
 import actionEvents from '../../scripts/tickets/ticketActionEvents.js'
 
 export default {

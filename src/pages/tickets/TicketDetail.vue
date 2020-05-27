@@ -5,7 +5,7 @@
       <div class="row">
         <!-- div de la partie pièces jointes (partie gauche de la page) -->
         <div class="col-2">
-          <rrr-attached-files-list />
+          <rrr-attached-files-list :ticketFiles="ticket.attachedFiles" />
         </div> 
         <!-- div de la partie droite (toutes les infos du ticket) -->
         <div class="col-10">

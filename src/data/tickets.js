@@ -8,7 +8,8 @@ export default {
     inCharge: '',
     creationDate: '',
     usefulTips: [],
-    solution: ''
+    solution: '',
+    attachedFiles: []
   },
   allTickets: [
     {
@@ -20,7 +21,37 @@ export default {
       inCharge: 'Utilisateur',
       creationDate: '19/04/2020',
       usefulTips: [],
-      solution: ''
+      solution: '',
+      attachedFiles: [
+        {
+          id: 1,
+          name: 'Informations compte.pdf',
+          extension: 'pdf',
+          thumbsUpCount: 2,
+          thumbedUpByUser: false
+        },
+        {
+          id: 2,
+          name: 'Document informatif client.doc',
+          extension: 'doc',
+          thumbsUpCount: 0,
+          thumbedUpByUser: false
+        },
+        {
+          id: 3,
+          name: 'Capture ecran 1 problème',
+          extension: 'jpg',
+          thumbsUpCount: 2,
+          thumbedUpByUser: true
+        },
+        {
+          id: 4,
+          name: 'Capture ecran 2 problème',
+          extension: 'jpg',
+          thumbsUpCount: 0,
+          thumbedUpByUser: false
+        }
+      ]
     },
     {
       id: 10148,
@@ -46,7 +77,8 @@ export default {
           thumbedUpByUser: false
         }
       ],
-      solution: ''
+      solution: '',
+      attachedFiles: []
     },
     {
       id: 9877,
@@ -57,7 +89,8 @@ export default {
       inCharge: null,
       creationDate: '22/04/2020',
       usefulTips: [],
-      solution: ''
+      solution: '',
+      attachedFiles: []
     },
     {
       id: 10092,
@@ -68,7 +101,8 @@ export default {
       inCharge: 'Collègue 1',
       creationDate: '28/04/2020',
       usefulTips: [],
-      solution: ''
+      solution: '',
+      attachedFiles: []
     }
   ]
 }

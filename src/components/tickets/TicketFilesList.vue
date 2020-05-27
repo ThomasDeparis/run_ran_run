@@ -1,8 +1,7 @@
 <template>
-  <div class="items-start q-gutter-md" style="max-width:200px;">
+  <div class="items-start q-gutter-md text-center">
     <q-toolbar class="bg-blue-5 text-white shadow-2">
       <q-toolbar-title class="text-h6">Pièces jointes</q-toolbar-title>
-      <!-- <q-btn flat side icon="playlist_add" label="Ajouter" /> -->
     </q-toolbar>
 
     <!-- bouton ajouter pièce jointe -->
@@ -11,60 +10,49 @@
       outline size="12px"
       icon="note_add"
       color="blue-5"
-      label="Ajouter" />
-
-    <q-card style="text-align:center;">
-      <img src="https://cdn.quasar.dev/img/mountains.jpg">
-
-      <q-card-section>
-        <div class="text-subtitle2">Pièce jointe 1.pdf</div>
-      </q-card-section>
-
-      <q-card-actions align="right">
-        <q-btn
-            flat
-            icon="thumb_up_alt"
-            color="green"
-            :label="1"
-          >
-            <q-tooltip 
-              content-class="shadow-4"
-              content-style="font-size: 12px">
-              J'ai trouvé cette pièce jointe très utile !
-            </q-tooltip>
-          </q-btn>
-      </q-card-actions>
-    </q-card>
-    <q-card class="my-card">
-      <img src="https://cdn.quasar.dev/img/mountains.jpg">
-
-      <q-card-section>
-        <div class="text-subtitle2">Pièce jointe 2.pdf</div>
-      </q-card-section>
-
-      <q-card-actions align="right">
-        <q-btn
-            flat
-            icon="thumb_up_alt"
-            color="green"
-            :label="0"
-          >
-            <q-tooltip 
-              content-class="shadow-4"
-              content-style="font-size: 12px">
-              J'ai trouvé cette pièce jointe très utile !
-            </q-tooltip>
-          </q-btn>
-      </q-card-actions>
-    </q-card>
+      label="Ajouter"
+      @click="addAttachedFile()"
+    />
+    
+    <!-- pièces jointes du ticket. Séparé en panel de 3 colonnes pour centrer les pj sous forme de card -->
+    <div class="row">
+      <div class="col" />
+      <div class="col-10">
+        <rrr-file-card
+          v-for="tf in ticketFiles"
+          :ticketFile="tf"
+          :key="tf.id"
+        />
+      </div>
+      <div class="col" />
+    </div>
+    
   </div>
 </template>
 
 <script>
+import TicketFileCard from 'components/tickets/TicketFileCard.vue'
+
 export default {
   name: 'TicketFilesList',
+  components: {
+    'rrr-file-card': TicketFileCard
+  },
+  props: {
+    // énumération des pièces jointes du ticket
+    ticketFiles: {
+      type: Array,
+      required: true
+    }
+  },
+
   data () {    
     return {}
+  },
+  methods: {
+    addAttachedFile: function () {
+      alert('La fonction d\'ajout de pièce jointe n\'est pas disponible dans la démo')
+    }
   }
 }
 </script>
