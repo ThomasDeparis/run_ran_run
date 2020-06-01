@@ -13,7 +13,7 @@
             <!-- affiche les cartes défi actives -->
             <q-img
               v-for="card in activeChallengesCards"
-              :key="card.imageSource"
+              :key="card.id"
               :src="card.imageSource" 
               class="q-mx-xs card"
               @click="openCardDetail(card)"
@@ -32,7 +32,7 @@
           <!-- affiche les cartes bonus actives -->
           <q-img
             v-for="card in activeBonusCards"
-            :key="card.imageSource"
+            :key="card.id"
             :src="card.imageSource"
             class="q-mx-xs card"
             @click="openCardDetail(card)"
@@ -63,17 +63,27 @@ export default {
   },
 
   data () {
-    return {}
+    return {
+      activeChallengesCards: [],
+      activeBonusCards: []
+    }
   },
+
+  created () {
+    // surveille la mise à jour des cartes actives
+    cardEvents.eventManager.$on(cardEvents.activeCardsUpdated, () => {
+      this.activeChallengesCards = this.getActiveChallengesCards()
+      this.activeBonusCards = this.getActiveBonusCards()
+    });
+
+    // à l'initialisation du panel : récupère les cartes actives
+    this.activeChallengesCards = this.getActiveChallengesCards()
+    this.activeBonusCards = this.getActiveBonusCards()
+  },
+
   computed: {
     activeTab: function () {
       return this.showBonus ? 'cards' : 'none'
-    },
-    activeChallengesCards: function () {
-      return Cards.challengesCards.filter(c => c.isActive === true)
-    },
-    activeBonusCards: function () {
-      return Cards.bonusCards.filter(c => c.isActive === true)
     }
   },
 
@@ -81,6 +91,13 @@ export default {
     openCardDetail: function (card) {
       // prévient le gestionnaire d'évènement d'ouvrir la popup "détail carte" pour la carte fournie en paramètre
       cardEvents.eventManager.$emit(cardEvents.openDialogEventName, card)
+    },
+
+    getActiveChallengesCards: function () {
+      return Cards.challengesCards.filter(c => c.isActive === true)
+    },
+    getActiveBonusCards: function () {
+      return Cards.bonusCards.filter(c => c.isActive === true)
     }
   }
 }

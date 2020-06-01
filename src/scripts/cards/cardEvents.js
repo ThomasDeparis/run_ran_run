@@ -10,5 +10,7 @@ export default {
   // nom de l'évènement qui indique que la carte en cours de drag'n'drop a été déposée dans une cardArea
   cardDroppedInArea: 'cardDroppedInArea',
   // nom de l'évènement qui indique qu'une carte d'une cardArea a été retirée
-  cardRemovedFromArea: 'cardRemovedFromArea'
+  cardRemovedFromArea: 'cardRemovedFromArea',
+  // nom de l'évènement qui informe de la mise à jour des cartes actives
+  activeCardsUpdated: 'activeCardsUpdated'
 }

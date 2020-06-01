@@ -47,6 +47,22 @@ export default {
     dataTransferName: {
       type: String,
       required: true
+    },
+    // carte fournie pour pré-remplir la zone
+    preFilledCard: {
+      type: Object
+    },
+    // contrainte sur le type de carte qui peut être déposée dans la zone
+    cardTypeConstraint: {
+      type: String,
+      default: ''
+    }
+  },
+
+  created () {
+    // initialisation : pré-remplit la zone avec la carte fournie
+    if (this.preFilledCard && Object.keys(this.preFilledCard).length > 0) {
+      this.cardInArea = this.preFilledCard
     }
   },
 
@@ -99,25 +115,47 @@ export default {
       var droppedEl = document.getElementById(droppedCardId)
 
       if (droppedEl != null) {
-        var droppedCard = cards.challengesCards.concat(cards.bonusCards).find(c => c.id == droppedCardId)
+        var droppedCard = cards.challengesCards.find(c => c.id == droppedCardId)
+        var cardType = ''
+        if (droppedCard) {
+          cardType = 'challenge'          
+        }
+        else {
+          droppedCard = cards.bonusCards.find(c => c.id == droppedCardId)          
+          cardType = 'bonus'
+        }
 
         // la carte a été retrouvée dans les cartes connues
         // la rend active et la stocke en tant que carte dans la zone
         if (droppedCard) {
-          this.cardInArea = droppedCard
-          // prévient par évènement que la carte a bie été réceptionnée dans la zone
-          cardEvents.eventManager.$emit(cardEvents.cardDroppedInArea, droppedCard)
+
+          // vérifie que la carte déposée soit du bon type
+          if (this.cardTypeConstraint !== '' && cardType !== this.cardTypeConstraint) {
+            // notifie l'utilisateur que la carte n'est pas du bon type
+            this.$q.notify({
+              message: 'La carte déposée n\'est pas du bon type',
+              color: 'red',
+              position: 'bottom'
+            })
+
+            e.target.classList.remove('drag-enter')
+            return
+          }
+          else {
+            this.cardInArea = droppedCard
+            // prévient par évènement que la carte a bie été réceptionnée dans la zone
+            cardEvents.eventManager.$emit(cardEvents.cardDroppedInArea, droppedCard)
+
+            // retire la carte (en tout cas la balise div de la carte) de l'emplacement d'origine
+            droppedEl.parentNode.removeChild(droppedEl)
+            e.target.appendChild(droppedEl)            
+          }
         }
 
         // cas où la carte est replacée d'où elle provient
         if (droppedEl.parentNode === e.target) {
           return
-        }
-
-        // retire la carte (en tout cas la balise div de la carte) de l'emplacement d'origine
-        droppedEl.parentNode.removeChild(droppedEl)
-        e.target.appendChild(droppedEl)
-        
+        } 
       }
       e.target.classList.remove('drag-enter')
     }

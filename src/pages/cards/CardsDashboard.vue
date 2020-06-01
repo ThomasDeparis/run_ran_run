@@ -7,6 +7,8 @@
           v-for="n in 3"
           :key="n"
           dataTransferName="cardId"
+          :preFilledCard="preFilledActiveCards[n-1]"
+          cardTypeConstraint="challenge"
         />
         <p class="text-uppercase text-center text-subtitle1"
            style="max-width:120px"
@@ -17,6 +19,8 @@
           v-for="n in [4, 5, 6]"
           :key="n"
           dataTransferName="cardId"
+          :preFilledCard="preFilledActiveCards[n-1]"
+          cardTypeConstraint="bonus"
         />
       </div>
       <div class="row no-wrap">
@@ -103,7 +107,9 @@ export default {
       availableCards: [],
       // toutes les cartes dispos mais découpées par paquet de x cartes pour les afficher par slide dans le caroussel
       // x étant la variable cardsPerSlide
-      availableCardsInSlides: []
+      availableCardsInSlides: [],
+      // cartes déjà actives à l'arrivée sur la page
+      preFilledActiveCards: []
     }
   },
 
@@ -111,12 +117,16 @@ export default {
     // écoute l'évènement comme quoi une carte a été déposée dans une zone carte active
     cardEvents.eventManager.$on(cardEvents.cardDroppedInArea, (cardDropped) => {
       this.removeAvailableCard(cardDropped)
+      cardEvents.eventManager.$emit(cardEvents.activeCardsUpdated)
     });
 
     cardEvents.eventManager.$on(cardEvents.cardRemovedFromArea, (cardRemoved) => {
       this.addAvailableCard(cardRemoved)
+      cardEvents.eventManager.$emit(cardEvents.activeCardsUpdated)
     });
 
+    // initialisation des données de la page
+    this.preFilledActiveCards = this.getPreFilledActiveCards()
     this.availableCardsInSlides = this.getAvailableCardsInSlides()
   },
 
@@ -144,7 +154,8 @@ export default {
       var cardsInSlides = []
       this.availableCards = this.getAvailableCards()
 
-      for (var slide = 1; slide <= this.carouselSlidesCount; slide++) {
+      // remplit chaque slide avec le nombre de cartes souhaitées par slide
+      for (let slide = 1; slide <= this.carouselSlidesCount; slide++) {
         cardsInSlides.push(this.availableCards.slice(this.cardsPerSlide * (slide - 1), this.cardsPerSlide * slide))
       }
 
@@ -182,6 +193,28 @@ export default {
     onDragCardStart (e) {
       e.dataTransfer.setData('cardId', e.target.id)
       e.dataTransfer.dropEffect = 'move'
+    },
+
+    // fournit les cartes déjà actives avant toute interaction sur la page
+    // ce sera sous la forme d'un tableau figé de 6 cases (3 premières pour les défis, 3 suivants pour les bonus)
+    getPreFilledActiveCards: function () {
+      var preFilledCards = Array(6)
+
+      var cc = Cards.challengesCards.filter(c => c.isActive === true)
+      var bc = Cards.bonusCards.filter(c => c.isActive === true)
+
+      // 3 premières cartes : cartes défi
+      for (let n = 0; n < 3; n++) {
+        preFilledCards[n] = cc[n] ?  cc[n] : {}
+      }
+
+      // 3 dernières cartes : cartes bonus
+      for (let n = 3, m = 0; n < 6; n++) {
+        preFilledCards[n] = bc[m] ?  bc[m] : {}
+        m++
+      }
+
+      return preFilledCards
     }
   }
 }
