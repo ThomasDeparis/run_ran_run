@@ -12,7 +12,7 @@
           <p class="card-title q-pa-md">Défis actifs</p>
             <!-- affiche les cartes défi actives -->
             <q-img
-              v-for="card in activeChallenges"
+              v-for="card in activeChallengesCards"
               :key="card.imageSource"
               :src="card.imageSource" 
               class="q-mx-xs card"
@@ -31,7 +31,7 @@
           <p class="card-title q-pa-md">Bonus actifs</p>
           <!-- affiche les cartes bonus actives -->
           <q-img
-            v-for="card in activeBonus"
+            v-for="card in activeBonusCards"
             :key="card.imageSource"
             :src="card.imageSource"
             class="q-mx-xs card"
@@ -49,36 +49,31 @@
         </div>
       </q-tab-panel>
     </q-tab-panels>
-
-  <rrr-card-dialog  />
   </div>
 </template>
 
 <script>
 import Cards from 'src/data/cards.js'
-import CardDetailDialog from 'components/cards/CardDetailDialog'
-import  cardEvents from '../../scripts/cards/cardEvents.js'
+import cardEvents from '../../scripts/cards/cardEvents.js'
 
 export default {
-  name: 'ActiveBonus',
-
-  components: {
-    'rrr-card-dialog': CardDetailDialog
-  },
-
+  name: 'ActiveCardsPanel',
   props: {
     showBonus: Boolean 
   },
 
   data () {
-    return {
-      activeChallenges: Cards.challengesCards,
-      activeBonus: Cards.bonusCards
-    }
+    return {}
   },
   computed: {
     activeTab: function () {
       return this.showBonus ? 'cards' : 'none'
+    },
+    activeChallengesCards: function () {
+      return Cards.challengesCards.filter(c => c.isActive === true)
+    },
+    activeBonusCards: function () {
+      return Cards.bonusCards.filter(c => c.isActive === true)
     }
   },
 

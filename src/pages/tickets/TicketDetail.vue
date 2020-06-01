@@ -26,7 +26,16 @@
                      q-badge q-badge--outline 
                      inline flex"
             >
-              Solution : {{ ticket.solution }}
+              Solution / Conclusion : {{ ticket.solution }}
+            </p>
+            <p
+              v-if="ticket.status == 'En attente'"              
+              class="q-mt-xs q-mb-none
+                     text-subtitle2 text-justify text-orange
+                     q-badge q-badge--outline 
+                     inline flex"
+            >
+              Raison : {{ ticket.solution }}
             </p>
           </div>
           <div class="q-ma-md bg-grey-2 shadow-2">
@@ -67,7 +76,7 @@
 import TicketData from 'src/data/tickets.js'
 import TipsList from 'components/tickets/TicketTipsList'
 import FilesList from 'components/tickets/TicketFilesList'
-import TicketActionButtons from 'components/tickets/TicketActionButtons'
+import TicketActionButtons from 'components/tickets/actions/TicketActionButtons.vue'
 
 export default {
   name: 'ticketDetail',

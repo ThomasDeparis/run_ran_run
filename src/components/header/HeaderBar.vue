@@ -17,7 +17,12 @@
               label="Tickets"
               class="q-mx-md"
             />            
-            <q-tab name="bonus" icon="stars" label="Défis et bonus" class="q-mx-md" />
+            <q-route-tab
+            :to="{ name: 'cardsDashboard' }"
+              name="bonus"
+              icon="stars"
+              label="Défis et bonus"
+              class="q-mx-md" />
             <q-route-tab
               :to="{ name: 'profile' }" 
               name="myProfile"
@@ -42,14 +47,14 @@
 </template>
 
 <script>
-import ActiveBonus from 'components/header/ActiveBonus'
+import ActiveCardsPanel from 'components/header/ActiveCardsPanel'
 import Avatar from 'components/header/Avatar'
 import ProfileInfo from '../../data/profile.js'
 
 export default {
   name: 'HeaderBar',
   components: {
-    'rrr-active-bonus': ActiveBonus,
+    'rrr-active-bonus': ActiveCardsPanel,
     'rrr-avatar': Avatar
   },
 

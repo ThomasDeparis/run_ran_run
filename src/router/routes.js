@@ -4,6 +4,7 @@ import ErrorPage from 'pages/Error404.vue'
 import TicketsDashboardPage from 'pages/tickets/TicketsDashboard.vue'
 import TicketDetailPage from 'pages/tickets/TicketDetail.vue'
 import UserProfilePage from 'pages/profile/UserProfile.vue'
+import CardsDashboardPage from 'pages/cards/CardsDashboard.vue'
 
 const routes = [
   {
@@ -27,6 +28,14 @@ const routes = [
     component: MainLayout,
     children: [
       { path: '', component: UserProfilePage, name: 'profile' }
+    ]
+  },
+  {
+    path: '/card',
+    component: MainLayout,
+    children: [
+      { path: '', redirect: { name: 'cardsDashboard' } },
+      { path: 'dashboard', component: CardsDashboardPage, name: 'cardsDashboard' }
     ]
   }
 ]

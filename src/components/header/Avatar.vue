@@ -22,21 +22,6 @@
       />
     </div>
   </div>
-  <!-- <div>
-    <q-linear-progress
-      rounded
-      size="8px"
-      :value="userProfile.general.experiencePoints/userProfile.general.maxExperiencePoints"
-      color="amber-4"
-      style="width:100px"
-    />
-    <q-img     
-      :src="userProfile.general.avatarImageSource"
-      height="60px"
-      width="60px"
-      align="right"
-    />
-  </div> -->
 </template>
 
 <script>

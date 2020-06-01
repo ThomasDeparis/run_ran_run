@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="q-mx-md q-pa-md bg-grey-2 text-center shadow-5">
+    <div class="q-ma-md q-pa-md bg-grey-2 text-center shadow-5">
       <q-img :src="userProfile.general.avatarImageSource" width="170px" />
       <p class="text-h5">{{ userProfile.general.name }}</p>
     </div>
@@ -26,7 +26,7 @@
       </div>      
     </div>
     <!-- Statistiques sous forme de circular progress -->
-    <div class="text-center bg-grey-2 q-mx-md shadow-2"> 
+    <div class="text-center bg-grey-2 q-mx-md shadow-2">
       <div class="bg-grey-2">
         <p class="text-h5 q-py-sm">Moyennes</p>
       </div>           
