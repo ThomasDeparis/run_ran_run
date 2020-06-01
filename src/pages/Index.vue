@@ -6,7 +6,7 @@
       <q-img
         height="150px"
         width="150px"
-        src="/statics/3r-logo.png"
+        src="statics/3r-logo.png"
         class="q-ma-md"
       />
     </div>
