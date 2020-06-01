@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <q-page>
     <div class="q-ma-md q-pa-md bg-grey-2 text-center shadow-5">
       <q-img :src="userProfile.general.avatarImageSource" width="170px" />
       <p class="text-h5">{{ userProfile.general.name }}</p>
@@ -113,7 +113,7 @@
         </template>          
       </q-list>
     </div>
-  </div>
+  </q-page>
 </template>
 
 <script>

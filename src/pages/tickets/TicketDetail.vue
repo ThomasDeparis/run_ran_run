@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <q-page>
     <!-- template de la page si numéro de ticket fourni ok  -->
     <template v-if="IsValidTicketId()">
       <div class="row">
@@ -69,7 +69,7 @@
         Identifiant de ticket invalide
       </q-banner>
     </template>
-  </div>
+  </q-page>
 </template>
 
 <script>

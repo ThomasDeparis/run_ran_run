@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <q-page>
     <div class="text-center bg-grey-2 q-ma-md shadow-5">
       <p class="text-h5 q-py-sm">Cartes actives</p>
       <div class="row no-wrap justify-around q-py-md items-center">
@@ -83,7 +83,7 @@
         </div>
       </div>      
     </div>    
-  </div>
+  </q-page>
 </template>
 
 <script>

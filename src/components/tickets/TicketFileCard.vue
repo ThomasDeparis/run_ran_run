@@ -1,37 +1,58 @@
 <template>
-  <q-card class="q-mb-md">
-    <div class="q-px-xl q-py-md">
-      <q-img basic :src="fileImageSource" />
-    </div>
+  <div>
+    <q-card class="q-mb-md">
+      <div class="q-px-xl q-py-md">
+        <q-img
+          basic
+          :src="fileImageSource"
+          @click="fileOpened = true"
+        />
+      </div>
 
-    <q-card-section>
-      <div class="text-subtitle2">{{ ticketFile.name }}</div>
-    </q-card-section>
+      <q-card-section @click="fileOpened = true">
+        <div class="text-subtitle2">{{ ticketFile.name }}</div>
+      </q-card-section>
 
-    <q-card-actions align="right">
-      <q-btn
-        flat
-        icon="thumb_up_alt"
-        color="green"
-        :label="ticketFile.thumbsUpCount"
-        :disable="ticketFile.thumbedUpByUser"
-        @click="thumbUp()"
-      >
-        <q-tooltip 
-          content-class="shadow-4"
-          content-style="font-size: 12px">
-          J'ai trouvé cette pièce jointe très utile !
-        </q-tooltip>
-      </q-btn>
-    </q-card-actions>
-  </q-card>
+      <q-card-actions align="right">
+        <q-btn
+          flat
+          icon="thumb_up_alt"
+          color="green"
+          :label="ticketFile.thumbsUpCount"
+          :disable="ticketFile.thumbedUpByUser"
+          @click="thumbUp()"
+        >
+          <q-tooltip 
+            content-class="shadow-4"
+            content-style="font-size: 12px">
+            J'ai trouvé cette pièce jointe très utile !
+          </q-tooltip>
+        </q-btn>
+      </q-card-actions>
+    </q-card>
+    <!-- popup pour consulter la pièce jointe  -->    
+    <q-dialog
+      v-model="fileOpened"
+      :full-width="ticketFile.extension === 'pdf'"
+    > 
+      <q-pdfviewer
+        v-if="ticketFile.extension === 'pdf'"
+        v-model="fileOpened"
+        :src="ticketFile.source"
+        type="html5"
+      />
+      <q-img v-else :src="ticketFile.source" />
+    </q-dialog>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'TicketFileCard',
   data () {
-    return {}
+    return {
+      fileOpened: false
+    }
   },
 
   props: {

@@ -1,7 +1,7 @@
 <template>
-  <q-page class="center">
-      <rrr-tickets-table :data="myTickets" title="Mes Tickets"></rrr-tickets-table>
-      <rrr-tickets-table :data="teamTickets" title="Tickets dans mon équipe"></rrr-tickets-table>
+  <q-page>
+      <rrr-tickets-table :data="myTickets" title="Mes Tickets non résolus"></rrr-tickets-table>
+      <rrr-tickets-table :data="teamTickets" title="Tickets non résolus dans mon équipe"></rrr-tickets-table>
   </q-page>
 </template>
 

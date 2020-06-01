@@ -25,6 +25,7 @@ export default {
       attachedFiles: [
         {
           id: 1,
+          source: 'statics/attachments/file-sample.pdf',
           name: 'Informations compte.pdf',
           extension: 'pdf',
           thumbsUpCount: 2,
@@ -32,6 +33,7 @@ export default {
         },
         {
           id: 2,
+          source: '',
           name: 'Document informatif client.doc',
           extension: 'doc',
           thumbsUpCount: 0,
@@ -39,6 +41,7 @@ export default {
         },
         {
           id: 3,
+          source: 'statics/attachments/creation-compte.png',
           name: 'Capture ecran 1 problème',
           extension: 'jpg',
           thumbsUpCount: 2,
@@ -46,6 +49,7 @@ export default {
         },
         {
           id: 4,
+          source: 'statics/attachments/creation-compte2.png',
           name: 'Capture ecran 2 problème',
           extension: 'jpg',
           thumbsUpCount: 0,
@@ -78,7 +82,16 @@ export default {
         }
       ],
       solution: '',
-      attachedFiles: []
+      attachedFiles: [        
+        {
+          id: 3,
+          source: 'statics/attachments/creation-compte.png',
+          name: 'Capture ecran 1 problème',
+          extension: 'jpg',
+          thumbsUpCount: 2,
+          thumbedUpByUser: true
+        }
+      ]
     },
     {
       id: 9877,
@@ -102,7 +115,16 @@ export default {
       creationDate: '28/04/2020',
       usefulTips: [],
       solution: '',
-      attachedFiles: []
+      attachedFiles: [        
+        {
+          id: 4,
+          source: 'statics/attachments/creation-compte2.png',
+          name: 'Capture ecran 2 problème',
+          extension: 'jpg',
+          thumbsUpCount: 2,
+          thumbedUpByUser: false
+        }
+      ]
     }
   ]
 }

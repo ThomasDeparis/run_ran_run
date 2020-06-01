@@ -6,17 +6,25 @@
           <q-btn class="col" flat round color="white" :icon="showBonusIcon" @click="showBonus = !showBonus" />
         </div>
         <div class="col">
-          <!-- Les onglets du menu -->       
+          <!-- Les onglets du menu -->     
           <q-tabs
             inline-label
-            class="bg-green-5 text-white">
+            class="bg-green-5 text-white"
+          >
+            <q-route-tab
+              :to="{ name: 'indexPage' }"
+              name="accueil" 
+              icon="home"
+              label="Accueil"
+              class="q-mx-md"
+            />
             <q-route-tab
               :to="{ name: 'ticketsDashboard' }"
               name="tickets" 
               icon="note" 
               label="Tickets"
               class="q-mx-md"
-            />            
+            />
             <q-route-tab
             :to="{ name: 'cardsDashboard' }"
               name="bonus"
