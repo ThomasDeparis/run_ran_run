@@ -1,7 +1,7 @@
 {
   "name": "run_ran_run",
-  "version": "0.0.1",
-  "description": "A Quasar Framework app",
+  "version": "0.1.1",
+  "description": "Une application web ludique et motivante pour gérer votre service client",
   "productName": "Run Ran Run",
   "cordovaId": "org.cordova.quasar.app",
   "capacitorId": "",

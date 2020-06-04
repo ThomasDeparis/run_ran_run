@@ -3,7 +3,11 @@
     <div class="q-pa-md">
       <div class="row">
         <div class="q-pt-xs">
-          <q-btn class="col" flat round color="white" :icon="showBonusIcon" @click="showBonus = !showBonus" />
+          <q-btn class="col" style="opacity:0.75"  
+            round color="white" text-color="green-5"
+            :icon="showBonusIcon"
+            @click="showBonus = !showBonus"
+          />
         </div>
         <div class="col">
           <!-- Les onglets du menu -->     

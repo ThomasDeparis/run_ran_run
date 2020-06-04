@@ -33,13 +33,13 @@
       <p class="text-h5 q-py-sm">Cartes disponibles</p>
       <q-carousel
         v-model="slide"
+        ref="carousel"
         transition-prev="slide-right"
         transition-next="slide-left"
         animated
         control-color="green-5"
-        padding
-        arrows
-        height="250px"
+        padding        
+        height="300px"
         class="bg-grey-2"
       >
         <!-- remplit le caroussel avec les images des cartes disponibles -->
@@ -59,7 +59,22 @@
             draggable="true"       
             @dragstart="onDragCardStart"  
           />
-        </q-carousel-slide>      
+        </q-carousel-slide>
+        <template v-slot:control>
+          <q-carousel-control position="bottom" :offset="[0, 5]">
+            <q-btn
+              push round dense class="q-mx-md"
+              color="light-green-5" text-color="white" icon="arrow_left"
+              @click="$refs.carousel.previous()"
+            />
+            <span class="text-black">{{ slide + 1 }} / {{ carouselSlidesCount }}</span>
+            <q-btn
+              push round dense class="q-mx-md" 
+              color="light-green-5" text-color="white" icon="arrow_right"
+              @click="$refs.carousel.next()"
+            />
+          </q-carousel-control>
+        </template>
       </q-carousel>
       <!-- sélection du nombre de cartes à afficher par slide  -->
       <div class="row justify-end">
